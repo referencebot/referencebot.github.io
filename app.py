@@ -124,7 +124,6 @@ def process_data(data):
     travis_env = {
         'GITHUB_API_URL': comment_url,
         'HEAD_REPO_URL': pr_data['head']['repo']['clone_url'],
-        'HEAD_REPO_NAME': pr_data['head']['repo']['name'],
         'HEAD_BRANCH': pr_data['head']['ref'],
         'REPO_NAME': pr_data['base']['repo']['name'],
         'VERSION': pr_data['base']['ref'],

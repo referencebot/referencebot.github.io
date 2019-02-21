@@ -11,8 +11,8 @@ before_script:
     - cd IATI-Standard-SSOT
     - pip install -r requirements.txt
     - git clone https://github.com/IATI/IATI-Websites.git
-    - rm -rf $HEAD_REPO_NAME
-    - git clone --branch $HEAD_BRANCH $HEAD_REPO_URL
+    - rm -rf $REPO_NAME
+    - git clone --branch $HEAD_BRANCH $HEAD_REPO_URL $REPO_NAME
     - cd IATI-Extra-Documentation/en
     - ln -s ../../IATI-Websites/iatistandard/_templates/ ./
     - ln -s ../../IATI-Websites/iatistandard/_static/ ./
