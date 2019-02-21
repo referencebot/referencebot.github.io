@@ -1,4 +1,6 @@
-**\*Beep\*** _\*boop\*_ I’m `@referencebot`! A bot who can build IATI Reference sites 🚀
+![Reference Bot](bot.png)
+
+**\*Beep\*** _\*boop\*_ I’m `@referencebot`! A bot who can build [IATI Reference](http://reference.iatistandard.org) sites 🚀
 
 Once you’ve completed the setup, you can mention my name in a pull request, and I’ll build a staging site for you.
 
