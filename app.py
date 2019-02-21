@@ -30,7 +30,7 @@ RELEVANT_BASE_BRANCHES = [
 
 
 TRAVIS_URL = 'https://api.travis-ci.com/repo/referencebot%2F' + \
-             'reference-sitebuilder/requests'
+             'referencebot.github.io/requests'
 
 
 @api.route("/github")
