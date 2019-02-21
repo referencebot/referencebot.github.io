@@ -2,7 +2,7 @@
 
 **\*Beep\*** _\*boop\*_ I’m `@referencebot`! A bot who can build [IATI Reference](http://reference.iatistandard.org) sites 🚀
 
-Once you’ve completed the setup, you can mention my name in a pull request, and I’ll build a staging site for you.
+Once you’ve completed the setup, you can write "@referencebot build!" in a pull request comment, and I’ll build a staging site for you.
 
 ## Setup
 
@@ -19,4 +19,4 @@ You need to add a webhook to your organization, so I can be notified whenever yo
 
 ## Usage
 
-Mention `@referencebot` in a pull request comment, and I’ll reply!
+Mention "@referencebot" and "build" in a pull request comment, and I’ll do the rest!
