@@ -1,4 +1,4 @@
-**\*Beep\*** _\*boop\*_ I’m `@referencebot`! A bot who can build IATI Reference sites :rocket:
+**\*Beep\*** _\*boop\*_ I’m `@referencebot`! A bot who can build IATI Reference sites 🚀
 
 Once you’ve completed the setup, you can mention my name in a pull request, and I’ll build a staging site for you.
 
