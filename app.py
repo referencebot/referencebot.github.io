@@ -90,11 +90,8 @@ def is_relevant(data):
     if data.get('action') != 'created':
         logging.info('ignoring - not a creation event')
         return False
-    if not data.get('issue'):
-        logging.info('ignoring - not an issue')
-        return False
-    if not data['issue'].get('pull_request'):
-        logging.info('ignoring - issue is not a PR')
+    if not data.get('issue', {}).get('pull_request'):
+        logging.info('ignoring - not a PR')
         return False
     if '@referencebot' not in data.get('comment', {}).get('body', '').lower():
         logging.info('ignoring - comment not addressed to me!')
