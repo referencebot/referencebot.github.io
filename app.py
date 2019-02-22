@@ -1,3 +1,4 @@
+import json
 import logging
 from random import choice
 import os
@@ -156,9 +157,18 @@ def process_data(data):
     post_github_comment(msg, comment_url)
 
 
+@api.route('/')
+async def home(req, resp):
+    resp.text = 'Nothing to see here!'
+
+
 @api.route('/github')
 async def webhook(req, resp):
-    data = await req.media()
+    try:
+        data = await req.media()
+    except json.decoder.JSONDecodeError:
+        resp.media = {'success': False}
+        return
     process_data(data)
     resp.media = {'success': True}
 
