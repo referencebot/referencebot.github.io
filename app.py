@@ -102,6 +102,8 @@ def is_relevant(data):
 
 @api.background.task
 def process_data(data):
+    print(data)
+
     if not is_relevant(data):
         return
 
