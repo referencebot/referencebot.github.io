@@ -1,3 +1,4 @@
+import logging
 from random import choice
 import os
 
@@ -80,29 +81,29 @@ def post_github_comment(comment, url):
         'body': comment
     }
     resp = requests.post(url, json=data, headers=headers)
-    print(f'Github comment: "{comment}" ({resp.status_code})')
+    logging.info(f'Github comment: "{comment}" ({resp.status_code})')
     return resp
 
 
 def is_relevant(data):
     if data.get('action') != 'created':
-        print('ignoring - not a creation event')
+        logging.info('ignoring - not a creation event')
         return False
     if not data.get('issue'):
-        print('ignoring - not an issue')
+        logging.info('ignoring - not an issue')
         return False
     if not data['issue'].get('pull_request'):
-        print('ignoring - issue is not a PR')
+        logging.info('ignoring - issue is not a PR')
         return False
     if '@referencebot' not in data.get('comment', {}).get('body', '').lower():
-        print('ignoring - comment not addressed to me!')
+        logging.info('ignoring - comment not addressed to me!')
         return False
     return True
 
 
 @api.background.task
 def process_data(data):
-    print(data)
+    logging.info(data)
 
     if not is_relevant(data):
         return
