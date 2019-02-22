@@ -19,3 +19,6 @@ deploy:
 after_deploy:
     - >
       curl -H "Authorization: token $GITHUB_TOKEN" --request POST $GITHUB_API_URL --data '{"body":"Okay - A demo site should have been deployed here: http://'"$HEAD_BRANCH"'-'"$REPO_NAME"'-refbot.surge.sh"}'
+after_failure:
+    - >
+      curl -H "Authorization: token $GITHUB_TOKEN" --request POST $GITHUB_API_URL --data '{"body":"Oh dear... There was a problem. I'm afraid I wasn't able to build the site."}'
