@@ -6,6 +6,7 @@ before_install:
     - sudo apt-get install -qq libxml2-utils
 before_script:
     - ./before_script.sh
+    - cd IATI-Standard-SSOT
 script:
     - ./combined_gen.sh
 deploy:

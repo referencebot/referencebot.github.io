@@ -15,4 +15,3 @@ cd ../..
 mkdir docs
 cd docs
 git init
-cd ..
