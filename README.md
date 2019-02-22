@@ -14,7 +14,9 @@ You need to add a webhook to your organization, so I can be notified whenever yo
  4. You’ll see a form to add a new webhook. Webhooks are fired whenever some specified action happens on github.
  5. First, set the Payload URL to [https://reference-iatistandard-org.herokuapp.com/github](https://reference-iatistandard-org.herokuapp.com/github)
  6. Set the Content type to **"application/json"**
- 7. For "Which events would you like to trigger this webhook?", deselect everything EXCEPT **"Issue comments"**
+ 7. For "Which events would you like to trigger this webhook?", deselect everything EXCEPT:
+     * **"Issue comments"**, and
+     * **"Pull requests"**
  8. Leave **"Active"** checked, and click **"Add webhook"**
 
 ## Usage
