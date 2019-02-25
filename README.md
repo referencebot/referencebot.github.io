@@ -13,11 +13,12 @@ You need to add a webhook to your organization, so I can be notified whenever yo
  3. In the sidebar, click **"Webhooks"**. Then near the top-right, you’ll see an **"Add webhook"** button. Click it!
  4. You’ll see a form to add a new webhook. Webhooks are fired whenever some specified action happens on github.
  5. First, set the Payload URL to [https://referencebot.herokuapp.com/github](https://referencebot.herokuapp.com/github)
- 6. Leave the Content type, Secret, and SSL verification as default
- 7. For "Which events would you like to trigger this webhook?", choose "**Let me select individual events.**" Then ensure only the following two checkboxes are checked:
+ 6. Set the "Content type" to "**application/json**"
+ 7. Leave the "Secret" and "SSL verification" as default
+ 8. For "Which events would you like to trigger this webhook?", choose "**Let me select individual events.**" Then ensure only the following two checkboxes are checked:
      * **"Issue comments"**, and
      * **"Pull requests"**
- 8. Leave "Active" checked, and click **"Add webhook"**
+ 9. Leave "Active" checked, and click **"Add webhook"**
 
 ## Usage
 
