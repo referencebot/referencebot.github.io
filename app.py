@@ -148,9 +148,12 @@ def process_data(data):
         post_github_comment(msg, comment_url)
         return
 
+    txt_version = travis_env['VERSION'].replace('-', ' ')
+
     msg = f'{random_exclamation()} I\'ll build against ' + \
-          f'{travis_env["VERSION"]}.\n\nI\'ll post a link ' + \
-          f'when it\'s ready.'
+          f'[{txt_version}](https://github.com/IATI/' + \
+          f'IATI-Standard-SSOT/tree/{travis_env["VERSION"]}).' + \
+          f'\n\nI\'ll post a link when it\'s ready.'
     post_github_comment(msg, comment_url)
 
 
