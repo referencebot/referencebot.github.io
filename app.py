@@ -10,19 +10,22 @@ import responder
 api = responder.API()
 
 
-RELEVANT_REPOS = [
-    # 'IATI-Standard-SSOT',
+VERSIONED_REPOS = [
     'IATI-Rulesets',
     'IATI-Extra-Documentation',
     'IATI-Codelists',
-    # 'IATI-Codelists-NonEmbedded',
-    # 'IATI-Developer-Documentation',
-    # 'IATI-Guidance',
     'IATI-Websites',
+    'IATI-Standard-SSOT',
+]
+
+UNVERSIONED_REPOS = [
+    'IATI-Developer-Documentation',
+    'IATI-Guidance',
+    'IATI-Codelists-NonEmbedded',
 ]
 
 
-KNOWN_BASE_BRANCHES = [
+BASE_BRANCHES = [
     'version-2.03',
     'version-2.02',
     'version-2.01',
@@ -130,12 +133,22 @@ def process_data(data):
         'VERSION': pr_data['base']['ref'],
     }
 
-    if travis_env['REPO_NAME'] not in RELEVANT_REPOS:
-        msg = 'Sorry - I\'m afraid I don\'t know how to build ' + \
-              'this repository.'
+    if travis_env['REPO_NAME'] in UNVERSIONED_REPOS:
+        if travis_env['VERSION'] == 'master':
+            travis_env['VERSION'] = 'version-2.03'
+        else:
+            msg = 'Sorry - the base branch is not the `master` ' + \
+                  'branch, so I\'m not sure how to proceed.'
+            post_github_comment(msg, comment_url)
+            return
+
+    if travis_env['REPO_NAME'] not in VERSIONED_REPOS + UNVERSIONED_REPOS:
+        msg = f'Sorry - I\'m afraid I don\'t know how to build the ' + \
+              f'{travis_env["REPO_NAME"]} repository.'
         post_github_comment(msg, comment_url)
         return
-    if travis_env['VERSION'] not in KNOWN_BASE_BRANCHES:
+    if travis_env['REPO_NAME'] in VERSIONED_REPOS and \
+       travis_env['VERSION'] not in BASE_BRANCHES:
         msg = 'Sorry - the base branch doesn\'t look like a version ' + \
               'branch, so I\'m not sure how to proceed.'
         post_github_comment(msg, comment_url)
@@ -150,10 +163,14 @@ def process_data(data):
 
     txt_version = travis_env['VERSION'].replace('-', ' ')
 
-    msg = f'{random_exclamation()} I\'ll build against ' + \
-          f'[{txt_version}](https://github.com/IATI/' + \
-          f'IATI-Standard-SSOT/tree/{travis_env["VERSION"]}).' + \
-          f'\n\nI\'ll post a link when it\'s ready.'
+    msg = random_exclamation()
+
+    if travis_env['REPO_NAME'] != 'IATI-Standard-SSOT':
+        msg += f' I\'ll build against ' + \
+               f'[`{txt_version}`](https://github.com/IATI/' + \
+               f'IATI-Standard-SSOT/tree/{travis_env["VERSION"]}).'
+
+    msg += f'\n\nI\'ll post a link when it\'s ready.'
     post_github_comment(msg, comment_url)
 
 
