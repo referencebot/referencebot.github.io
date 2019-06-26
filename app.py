@@ -14,7 +14,6 @@ VERSIONED_REPOS = [
     'IATI-Rulesets',
     'IATI-Extra-Documentation',
     'IATI-Codelists',
-    'IATI-Websites',
     'IATI-Standard-SSOT',
 ]
 
@@ -22,6 +21,7 @@ UNVERSIONED_REPOS = [
     'IATI-Developer-Documentation',
     'IATI-Guidance',
     'IATI-Codelists-NonEmbedded',
+    'IATI-Websites',
 ]
 
 
