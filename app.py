@@ -25,13 +25,16 @@ UNVERSIONED_REPOS = [
 ]
 
 
-BASE_BRANCHES = [
-    'version-2.03',
-    'version-2.02',
-    'version-2.01',
-    'version-1.05',
-    'version-1.04',
+VERSIONS = [
+    '2.03',
+    '2.02',
+    '2.01',
+    '1.05',
+    '1.04',
 ]
+
+
+BASE_BRANCHES = ['version-{}'.format(version) for version in VERSIONS]
 
 
 EMOJI = [
@@ -133,12 +136,20 @@ def process_data(data):
         'VERSION': pr_data['base']['ref'],
     }
 
+    build_version = [version for version in VERSIONS
+                     if version in data['comment']['body']]
+    build_version = 'version-{}'.format(build_version[0]) \
+                    if len(build_version) == 1 else None
+    if build_version:
+        travis_env['VERSION'] = build_version
+
     if travis_env['REPO_NAME'] in UNVERSIONED_REPOS:
         if travis_env['VERSION'] == 'master':
             travis_env['VERSION'] = 'version-2.03'
         else:
             msg = 'Sorry - the base branch is not the `master` ' + \
-                  'branch, so I\'m not sure how to proceed.'
+                  'branch, and you didn\'t specify another branch to ' + \
+                  'build against. So, I\'m not sure how to proceed.'
             post_github_comment(msg, comment_url)
             return
 
