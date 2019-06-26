@@ -158,8 +158,7 @@ def process_data(data):
               f'{travis_env["REPO_NAME"]} repository.'
         post_github_comment(msg, comment_url)
         return
-    if travis_env['REPO_NAME'] in VERSIONED_REPOS and \
-       travis_env['VERSION'] not in BASE_BRANCHES:
+    if travis_env['VERSION'] not in BASE_BRANCHES:
         msg = 'Sorry - the base branch doesn\'t look like a version ' + \
               'branch, so I\'m not sure how to proceed.'
         post_github_comment(msg, comment_url)
