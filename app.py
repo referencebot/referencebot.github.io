@@ -146,7 +146,7 @@ def process_data(data):
     if travis_env['REPO_NAME'] in UNVERSIONED_REPOS:
         if travis_env['VERSION'] == 'master':
             travis_env['VERSION'] = 'version-2.03'
-        else:
+        elif not build_version:
             msg = 'Sorry - the base branch is not the `master` ' + \
                   'branch, and you didn\'t specify another branch to ' + \
                   'build against. So, I\'m not sure how to proceed.'
